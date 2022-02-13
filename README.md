@@ -1,24 +1,39 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+| Colum              | Type   | Option                    |
+| ------------------ | ------ | ------------------------- |
+| nickname           | string | null: false, unique: true |
+| email              | string | null: false               |
+| encrypted_password | string | null: false               |
+| name               | text   | null: false               |
+| name_kana          | text   | null: false               |
+| birthday           | time   | null: false               |
 
-* Ruby version
 
-* System dependencies
+## itemsテーブル
 
-* Configuration
+| Colum            | Type       | Option                         |
+| ---------------- | ---------- | ------------------------------ |
+| item_name        | text       | null: false                    |
+| category         | string     | null: false                    |
+| detail           | string     | null: false                    |
+| description      | string     | null: false                    |
+| shipping_cost    | string     | null: false                    |
+| shipping_area    | string     | null: false                    |
+| daystoship       | integer    | null: false                    |
+| user             | references | null: false, foreign_key: true |
 
-* Database creation
 
-* Database initialization
+## ordersテーブル
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+| Colum           | Type       | Option                         |
+| --------------- | ---------- | ------------------------------ |
+| post_cord       | integer    | null: false                    |
+| prefectures     | string     | null: false                    |
+| municipalities  | string     | null: false                    |
+| address         | integer    | null: false                    |
+| building_name   | string     |                                |
+| phone_number    | integer    | null: false                    |
+| user            | references | null: false, foreign_key: true |
