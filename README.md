@@ -4,36 +4,75 @@
 
 | Colum              | Type   | Option                    |
 | ------------------ | ------ | ------------------------- |
-| nickname           | string | null: false, unique: true |
-| email              | string | null: false               |
+| nickname           | string | null: false               |
+| email              | string | null: false, unique: true |
 | encrypted_password | string | null: false               |
-| name               | text   | null: false               |
-| name_kana          | text   | null: false               |
-| birthday           | time   | null: false               |
+| name               | string | null: false               |
+| name_first         | string | null: false               |
+| name_family         | string | null: false               |
+| birthday           | date   | null: false               |
+
+### Association
+- has_many   :item
+- has_one    :order
+- has_many   :order_history
 
 
 ## itemsテーブル
 
 | Colum            | Type       | Option                         |
 | ---------------- | ---------- | ------------------------------ |
-| item_name        | text       | null: false                    |
-| category         | string     | null: false                    |
-| detail           | string     | null: false                    |
-| description      | string     | null: false                    |
-| shipping_cost    | string     | null: false                    |
-| shipping_area    | string     | null: false                    |
-| daystoship       | integer    | null: false                    |
 | user             | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :user
+- has_one    :order
+- belongs_to_active_hash :item_genre
+- belongs_to :order_history
+
+
+## items_genre
+
+| Colum            | Type       | Option                         |
+| ---------------- | ---------- | ------------------------------ |
+| item_name        | string     | null: false                    |
+| category         | integer    | null: false                    |
+| detail           | integer    | null: false                    |
+| description      | text       | null: false                    |
+| shipping_cost    | integer    | null: false                    |
+| prefecture       | integer    | null: false                    |
+| daystoship       | integer    | null: false                    |
+
+### Association
+- belongs_to :item
+
 
 
 ## ordersテーブル
 
 | Colum           | Type       | Option                         |
 | --------------- | ---------- | ------------------------------ |
-| post_cord       | integer    | null: false                    |
-| prefectures     | string     | null: false                    |
-| municipalities  | string     | null: false                    |
+| user            | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to  :user
+- belongs_to  :item
+- has_many    :order_history
+
+## order_history
+
+| Colum           | Type       | Option                         |
+| --------------- | ---------- | ------------------------------ |
+| post_cord       | string     | null: false                    |
+| prefecture      | integer    | null: false                    |
+| municipality    | string     | null: false                    |
 | address         | integer    | null: false                    |
 | building_name   | string     |                                |
-| phone_number    | integer    | null: false                    |
+| phone_number    | string     | null: false                    |
 | user            | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to  :user
+- has_many    :items
+- belongs_to  :order
+
