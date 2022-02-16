@@ -9,7 +9,7 @@
 | encrypted_password | string | null: false               |
 | name               | string | null: false               |
 | name_first         | string | null: false               |
-| name_family         | string | null: false               |
+| name_family        | string | null: false               |
 | birthday           | date   | null: false               |
 
 ### Association
@@ -36,12 +36,12 @@
 | Colum            | Type       | Option                         |
 | ---------------- | ---------- | ------------------------------ |
 | item_name        | string     | null: false                    |
-| category         | integer    | null: false                    |
-| detail           | integer    | null: false                    |
+| category_id      | integer    | null: false                    |
+| detail_id        | integer    | null: false                    |
 | description      | text       | null: false                    |
-| shipping_cost    | integer    | null: false                    |
-| prefecture       | integer    | null: false                    |
-| daystoship       | integer    | null: false                    |
+| shipping_cost_id | integer    | null: false                    |
+| prefecture_id    | integer    | null: false                    |
+| daystoship_id    | integer    | null: false                    |
 
 ### Association
 - belongs_to :item
@@ -65,7 +65,7 @@
 | Colum           | Type       | Option                         |
 | --------------- | ---------- | ------------------------------ |
 | post_cord       | string     | null: false                    |
-| prefecture      | integer    | null: false                    |
+| prefecture_id   | integer    | null: false                    |
 | municipality    | string     | null: false                    |
 | address         | integer    | null: false                    |
 | building_name   | string     |                                |
