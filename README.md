@@ -7,7 +7,6 @@
 | nickname           | string | null: false               |
 | email              | string | null: false, unique: true |
 | encrypted_password | string | null: false               |
-| name               | string | null: false               |
 | name_first         | string | null: false               |
 | name_family        | string | null: false               |
 | name_first_kana    | string | null: false               |
@@ -26,6 +25,7 @@
 | ---------------- | ---------- | ------------------------------ |
 | user             | references | null: false, foreign_key: true |
 | item_name        | string     | null: false                    |
+| item_price       | integer    | null: false                    |
 | category_id      | integer    | null: false                    |
 | detail_id        | integer    | null: false                    |
 | description      | text       | null: false                    |
@@ -49,7 +49,7 @@
 - belongs_to  :item
 - has_one     :order_history
 
-## order_history
+## order_historise
 
 | Colum           | Type       | Option                         |
 | --------------- | ---------- | ------------------------------ |
@@ -59,7 +59,6 @@
 | address         | string     | null: false                    |
 | building_name   | string     |                                |
 | phone_number    | string     | null: false                    |
-| user            | references | null: false, foreign_key: true |
 | order           | references | null: false, foreign_key: true |
 
 ### Association
