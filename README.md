@@ -53,6 +53,7 @@
 | Colum           | Type       | Option                         |
 | --------------- | ---------- | ------------------------------ |
 | user            | references | null: false, foreign_key: true |
+| item            | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to  :user
@@ -70,6 +71,8 @@
 | building_name   | string     |                                |
 | phone_number    | string     | null: false                    |
 | user            | references | null: false, foreign_key: true |
+| item            | references | null: false, foreign_key: true |
+| order           | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to  :user
