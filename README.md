@@ -31,7 +31,7 @@
 | description      | text       | null: false                    |
 | shipping_cost_id | integer    | null: false                    |
 | prefecture_id    | integer    | null: false                    |
-| daytoship_id     | integer    | null: false                    |
+| day_to_ship_id   | integer    | null: false                    |
 
 ### Association
 - belongs_to :user
