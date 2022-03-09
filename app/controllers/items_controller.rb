@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @items = Item.all.order("created_at DESC")
+    @items = Item.all.order('created_at DESC')
   end
 
   def new
@@ -18,17 +18,28 @@ class ItemsController < ApplicationController
     end
   end
 
-    def show
-      @item =Item.find(params[:id])
-
-    end
-  
-  
-
-  private
-  
-  def item_params
-    params.require(:item).permit(:image, :item_name, :description, :category_id, :detail_id, :shipping_cost_id, :prefecture_id, :day_to_ship_id, :item_price).merge(user_id: current_user.id)
+  def show
+    @item = Item.find(params[:id])
   end
 
+  def edit
+    @item = Item.find(params[:id])
+    redirect_to items_path if user_signed_in? && current_user.id != @item.user_id
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to "/items/#{@item.id}"
+    else
+      render :edit
+    end
+  end
+
+  private
+
+  def item_params
+    params.require(:item).permit(:image, :item_name, :description, :category_id, :detail_id, :shipping_cost_id, :prefecture_id,
+                                 :day_to_ship_id, :item_price).merge(user_id: current_user.id)
+  end
 end

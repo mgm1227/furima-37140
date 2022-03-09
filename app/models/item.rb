@@ -1,17 +1,16 @@
 class Item < ApplicationRecord
-
   validates :item_name, presence: true
-  validates :item_price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is invalid. Input half-width characters"}
+  validates :item_price, presence: true,
+                         numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'is invalid. Input half-width characters' }
   validates :description, presence: true
   validates :image, presence: true
 
   belongs_to :user
-  #has_one    :order
+  # has_one    :order
   has_one_attached :image
 
-  
   extend ActiveHash::Associations::ActiveRecordExtensions
-  
+
   validates :category_id, numericality: { other_than: 1 }
   validates :detail_id, numericality: { other_than: 1 }
   validates :shipping_cost_id, numericality: { other_than: 1 }
