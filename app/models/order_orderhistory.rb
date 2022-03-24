@@ -19,6 +19,6 @@ class OrderOrderhistory
     # 各テーブルにデータを保存する処理を書く
     order = Order.create(user_id: user_id, item_id: item_id)
     # 住所を保存する
-    OrderHistory.create(post_cord: postal_code, prefecture: prefecture, municipality: municipality, address: address, phone_number: phone_number, building_name: building_name, order_id: order_id)
+    OrderHistory.create(post_cord: postal_code, prefecture: prefecture, municipality: municipality, address: address, phone_number: phone_number, building_name: building_name, order_id: order.id)
   end
 end
