@@ -17,6 +17,11 @@ RSpec.describe OrderOrderhistory, type: :model do
     end
 
     context '内容に問題がある場合' do
+      it 'tokenが空では保存できない' do
+        @order_orderhistory.token = nil
+        @order_orderhistory.valid?
+        expect(@order_orderhistory.errors.full_messages).to include("Token can't be blank")
+      end
       it 'post_cordが空でだと保存できない' do
         @order_orderhistory.post_cord = ''
         @order_orderhistory.valid?
@@ -45,17 +50,17 @@ RSpec.describe OrderOrderhistory, type: :model do
       it 'phone_numberが空では保存できない' do
         @order_orderhistory.phone_number = ''
         @order_orderhistory.valid?
-        expect(@order_orderhistory.errors.full_messages).to include("Phone number can't be blank", "Phone number is invalid")
+        expect(@order_orderhistory.errors.full_messages).to include("Phone number can't be blank", 'Phone number is invalid')
       end
       it 'phone_numberは、10桁以上11桁以内の半角数値でないと保存できない' do
         @order_orderhistory.phone_number = '0123456789012'
         @order_orderhistory.valid?
-        expect(@order_orderhistory.errors.full_messages).to include()
+        expect(@order_orderhistory.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberは、10桁以上11桁以内の全角数値では保存できない' do
         @order_orderhistory.phone_number = '０１２３４５６７８９０'
         @order_orderhistory.valid?
-        expect(@order_orderhistory.errors.full_messages).to include()
+        expect(@order_orderhistory.errors.full_messages).to include('Phone number is invalid')
       end
     end
   end
