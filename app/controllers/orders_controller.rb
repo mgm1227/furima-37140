@@ -1,10 +1,13 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!
 
   def index
     @item = Item.find(params[:item_id])
     @order = Order.new
     @order_orderhistory = OrderOrderhistory.new
+    if  @item.order != nil || current_user.id == @item.user_id
+      redirect_to items_path
+    end
   end
 
   def create
@@ -28,7 +31,7 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV['PAYJP_SECRET_KEY'] # 秘密鍵
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item = Item.find(params[:item_id]).item_price,
       card: order_params[:token],
