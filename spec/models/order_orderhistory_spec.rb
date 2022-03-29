@@ -68,7 +68,7 @@ RSpec.describe OrderOrderhistory, type: :model do
       it 'phone_numberは、10桁以上11桁以内の半角数値でないと保存できない' do
         @order_orderhistory.phone_number = '0123456789012'
         @order_orderhistory.valid?
-        expect(@order_orderhistory.errors.full_messages).to include
+        expect(@order_orderhistory.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberは、10桁以上11桁以内の全角数値では保存できない' do
         @order_orderhistory.phone_number = '０１２３４５６７８９０'
@@ -83,7 +83,7 @@ RSpec.describe OrderOrderhistory, type: :model do
       it '電話番号が12桁以上では購入できない' do
         @order_orderhistory.phone_number = '0123456789012'
         @order_orderhistory.valid?
-        expect(@order_orderhistory.errors.full_messages).to include
+        expect(@order_orderhistory.errors.full_messages).to include('Phone number is invalid')
       end
     end
   end

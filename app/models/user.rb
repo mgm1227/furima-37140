@@ -18,5 +18,5 @@ class User < ApplicationRecord
                                format: { with: /\A[ァ-ヶー－]+\z/, message: 'is invalid. Input full-width katakana characters' }
 
   has_many :itmes
-  # has_many :oders
+  has_many :oders
 end
