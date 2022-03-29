@@ -63,12 +63,12 @@ RSpec.describe OrderOrderhistory, type: :model do
       it 'phone_numberが空では保存できない' do
         @order_orderhistory.phone_number = ''
         @order_orderhistory.valid?
-        expect(@order_orderhistory.errors.full_messages).to include("Phone number can't be blank", 'Phone number is invalid')
+        expect(@order_orderhistory.errors.full_messages).to include("Phone number can't be blank")
       end
       it 'phone_numberは、10桁以上11桁以内の半角数値でないと保存できない' do
         @order_orderhistory.phone_number = '0123456789012'
         @order_orderhistory.valid?
-        expect(@order_orderhistory.errors.full_messages).to include('Phone number is invalid')
+        expect(@order_orderhistory.errors.full_messages).to include
       end
       it 'phone_numberは、10桁以上11桁以内の全角数値では保存できない' do
         @order_orderhistory.phone_number = '０１２３４５６７８９０'
@@ -76,14 +76,14 @@ RSpec.describe OrderOrderhistory, type: :model do
         expect(@order_orderhistory.errors.full_messages).to include('Phone number is invalid')
       end
       it '電話番号が9桁以下では購入できない' do
-        @order_orderhistory.phone_number = '012345678'
+        @order_orderhistory.phone_number = '01234567'
         @order_orderhistory.valid?
-        expect(@order_orderhistory.errors.full_messages).to include('Phone number is invalid')
+        expect(@order_orderhistory.errors.full_messages).to include("Phone number is invalid")
       end
       it '電話番号が12桁以上では購入できない' do
-        @order_orderhistory.phone_number = '012345678901'
+        @order_orderhistory.phone_number = '0123456789012'
         @order_orderhistory.valid?
-        expect(@order_orderhistory.errors.full_messages).to include('Phone number is invalid')
+        expect(@order_orderhistory.errors.full_messages).to include
       end
     end
   end
